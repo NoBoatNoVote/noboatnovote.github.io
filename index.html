@@ -80,7 +80,7 @@
 
             <div id="controls-panel" class="bg-gray-50 p-5 rounded-2xl space-y-4 border border-gray-100 opacity-50 pointer-events-none">
                 <div>
-                    <div class="slider-label"><span>জুম ইন/আউট</span><span id="zoomVal">1.0x</span></div>
+                    <div class="slider-label"><span>জুম ইন/আউট</span><span id="zoomVal">0.7x</span></div>
                     <input type="range" id="zoomSlider" min="0.01" max="2.5" step="0.01" value="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-indigo-600">
                 </div>
 
@@ -234,7 +234,7 @@
 
                 const dataURL = finalCanvas.toDataURL('image/png', 1.0);
                 const link = document.createElement('a');
-                link.download = 'NoBoat_NoVote_' + Date.now() + '.png';
+                link.download = 'NoBoatNoVote_' + Date.now() + '.png';
                 link.href = dataURL;
                 link.click();
             } catch (error) {
@@ -246,6 +246,7 @@
 </body>
 
 </html>
+
 
 
 
