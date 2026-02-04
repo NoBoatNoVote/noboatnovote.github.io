@@ -236,7 +236,7 @@
 
                 const dataURL = finalCanvas.toDataURL('image/png', 1.0);
                 const link = document.createElement('a');
-                link.download = 'NoBoatNoVote_' + Date.now() + '.png';
+                link.download = 'NoBoatNoVote_' + Date.now() + '.jpg';
                 link.href = dataURL;
                 link.click();
             } catch (error) {
@@ -248,5 +248,6 @@
 </body>
 
 </html>
+
 
 
