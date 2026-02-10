@@ -1,0 +1,5 @@
+1) Added "Kalpurush" font for looking good. Using "Hind Shiliguri" as backup font.
+2) Added a blazing fast hash function to avoid file name collision.
+3) Fixed file extension mismatching problem. For example, privous name was "NoBoatNoVote_177072977251.jpg.png". After fix, it'll be like "NoBoatNoVote_177072977251165914c00.png" which is standerd and safe.Enter11) Added "Kalpurush" font for looking good. Using "Hind Shiliguri" as backup font.
+2) Added a blazing fast hash function to avoid file name collision.
+3) Fixed file extension mismatching problem. For example, privous name was "NoBoatNoVote_177072977251.jpg.png". After fix, it'll be like "NoBoatNoVote_177072977251165914c00.png" which is standerd and safe.Enter
