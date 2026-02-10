@@ -10,14 +10,26 @@
     <title>No Boat No Vote | DP Maker</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        @font-face
+        {
+            font-family: 'Kalpurush';
+            src: url('fonts/Kalpurush.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        /* Fallback font */
         @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600&display=swap');
         
-        body {
-            font-family: 'Hind Siliguri', sans-serif;
+        body
+        {
+            font-family: 'Kalpurush', 'Hind Siliguri', sans-serif;
             background-color: #f0f2f5;
         }
 
-        #canvas-container {
+        #canvas-container
+        {
             position: relative;
             width: 100%;
             max-width: 500px;
@@ -30,14 +42,16 @@
             touch-action: none;
         }
 
-        #photo-canvas {
+        #photo-canvas
+        {
             position: absolute;
             top: 0;
             left: 0;
             cursor: move;
         }
 
-        #frame-overlay-img {
+        #frame-overlay-img
+        {
             position: absolute;
             top: 0;
             left: 0;
@@ -48,7 +62,8 @@
             object-fit: contain;
         }
 
-        .slider-label {
+        .slider-label
+        {
             display: flex;
             justify-content: space-between;
             margin-bottom: 4px;
@@ -65,10 +80,9 @@
         <p class="text-center text-gray-500 mb-8 text-sm">Chrome/Safari ব্রাউজারে ওপেন করুন। আপনার পছন্দের ছবিটি আপলোড করুন। সুন্দরভাবে ছবিটি বসানোর পর একদম নিচে ডাউনলোড বাটনে চাপ দিয়ে ❝নো বোট নো ভোট❞ ছবিটি ডাউনলোড করুন।</p>
         <p class="text-center text-gray-500 mb-8 text-sm">সাথে হ্যাশট্যাগ ব্যবহার করুন #NoBoatNoVote</p>
 
-        <!-- Canvas Area -->
         <div id="canvas-container" class="rounded-xl mb-8">
             <canvas id="photo-canvas"></canvas>
-            <!-- Frame Preview -->
+
             <img id="frame-overlay-img" src="no-boat-no-vote.png" alt="No Boat No Vote Frame">
         </div>
 
@@ -111,6 +125,7 @@
     <canvas id="final-canvas" style="display:none;"></canvas>
 
     <script>
+
         const canvas = document.getElementById('photo-canvas');
         const ctx = canvas.getContext('2d');
         const container = document.getElementById('canvas-container');
@@ -127,7 +142,8 @@
         
         fixedFrame.crossOrigin = "anonymous";
         
-        function loadFrame() {
+        function loadFrame()
+        {
             fixedFrame.src = frameImg.src;
         }
         
@@ -136,7 +152,8 @@
         let imgX = 0, imgY = 0, imgScale = 1;
         let isDragging = false, startX = 0, startY = 0;
 
-        function initCanvas() {
+        function initCanvas()
+        {
             canvas.width = container.clientWidth;
             canvas.height = container.clientHeight;
             draw();
@@ -146,7 +163,8 @@
 
         imageInput.addEventListener('change', (e) => {
             const file = e.target.files[0];
-            if (file) {
+            if (file)
+            {
                 const reader = new FileReader();
                 reader.onload = (f) => {
                     userImg = new Image();
@@ -170,7 +188,8 @@
             }
         });
 
-        function draw() {
+        function draw()
+        {
             if (!userImg.src) return;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.drawImage(userImg, imgX, imgY, userImg.width * imgScale, userImg.height * imgScale);
@@ -186,7 +205,8 @@
             });
         });
 
-        function handleStart(e) {
+        function handleStart(e)
+        {
             if (!userImg.src) return;
             isDragging = true;
             const p = e.touches ? e.touches[0] : e;
@@ -194,8 +214,10 @@
             startX = p.clientX - rect.left - imgX;
             startY = p.clientY - rect.top - imgY;
         }
-        function handleMove(e) {
-            if (isDragging) {
+        function handleMove(e)
+        {
+            if (isDragging)
+            {
                 const p = e.touches ? e.touches[0] : e;
                 const rect = canvas.getBoundingClientRect();
                 imgX = p.clientX - rect.left - startX;
@@ -205,7 +227,18 @@
                 draw();
             }
         }
-        function handleEnd() { isDragging = false; }
+        function handleEnd()
+        {
+            isDragging = false;
+        }
+
+        function hashCode(s)
+        {
+            s = String(s);
+            let hash = 0x1505;
+            for(let i = 0; i < s.length; i++) hash = ((hash << 5) + hash + s.charCodeAt(i)) | 0;
+            return (hash >>> 0).toString(16).padStart(8, '0');
+        }
 
         container.addEventListener('mousedown', handleStart);
         window.addEventListener('mousemove', handleMove);
@@ -215,12 +248,14 @@
         window.addEventListener('touchend', handleEnd);
 
         downloadBtn.addEventListener('click', () => {
-            if (!userImg.src) {
+            if (!userImg.src)
+            {
                 alert("ছবি আপলোড করুন।");
                 return;
             }
 
-            try {
+            try
+            {
                 const finalCanvas = document.getElementById('final-canvas');
                 const fCtx = finalCanvas.getContext('2d');
                 const size = 1200; 
@@ -236,18 +271,16 @@
 
                 const dataURL = finalCanvas.toDataURL('image/png', 1.0);
                 const link = document.createElement('a');
-                link.download = 'NoBoatNoVote_' + Date.now() + '.jpg';
+                link.download = 'NoBoatNoVote_' + Date.now() + hashCode(Date.now()) + '.png';
                 link.href = dataURL;
                 link.click();
-            } catch (error) {
+            }
+            catch (error)
+            {
                 console.error(error);
                 alert("সমস্যা হয়েছে। ফ্রেমের ফাইলটি (no-boat-no-vote.png) উপলভ্য নয়।");
             }
         });
     </script>
 </body>
-
 </html>
-
-
-
