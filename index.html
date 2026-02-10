@@ -78,7 +78,9 @@
     <div class="max-w-xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden p-6 md:p-8">
         <a href="/"><h1 class="text-3xl font-bold text-center text-indigo-700 mb-2">No Boat No Vote</h1></a>
         <p class="text-center text-gray-500 mb-8 text-sm">Chrome/Safari ব্রাউজারে ওপেন করুন। আপনার পছন্দের ছবিটি আপলোড করুন। সুন্দরভাবে ছবিটি বসানোর পর একদম নিচে ডাউনলোড বাটনে চাপ দিয়ে ❝নো বোট নো ভোট❞ ছবিটি ডাউনলোড করুন।</p>
-        <p class="text-center text-gray-500 mb-8 text-sm">সাথে হ্যাশট্যাগ ব্যবহার করুন #NoBoatNoVote</p>
+        <p class="text-center text-gray-500 mb-8 text-sm">সাথে হ্যাশট্যাগ ব্যবহার করুন 
+       <span onclick="copyHashtag()" class="text-indigo-600 font-bold cursor-pointer hover:text-indigo-800">#NoBoatNoVote</span>
+</p>
 
         <div id="canvas-container" class="rounded-xl mb-8">
             <canvas id="photo-canvas"></canvas>
@@ -240,6 +242,22 @@
             return (hash >>> 0).toString(16).padStart(8, '0');
         }
 
+        function copyHashtag()
+        {
+            navigator.clipboard.writeText('#NoBoatNoVote')
+                .then(() => {
+                    const n = document.createElement('div');
+                    n.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        কপি হয়েছে!
+                    `;
+                    n.style.cssText = 'position:fixed;top:20px;right:20px;background:#10b981;color:white;padding:8px 12px;border-radius:8px;z-index:9999;display:flex;align-items:center;';
+                    document.body.appendChild(n);
+                    setTimeout(() => n.remove(), 1500);
+                });
+        }
         container.addEventListener('mousedown', handleStart);
         window.addEventListener('mousemove', handleMove);
         window.addEventListener('mouseup', handleEnd);
