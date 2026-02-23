@@ -1,0 +1,159 @@
+@font-face {
+	font-family: 'Kalpurush';
+	src: url('fonts/Kalpurush.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* Fallback font */
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600&display=swap');
+
+body {
+	font-family: 'Poppins', Kalpurush;
+	sans-serif;
+	background-color: #450a0a;
+	overflow-x: hidden;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	color: #fef2f2;
+}
+
+.floating-text {
+	animation: float 7s ease-in-out infinite;
+	text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes float {
+
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+
+	50% {
+		transform: translateY(-30px);
+	}
+}
+
+.custom-slider {
+	-webkit-appearance: none;
+	width: 100%;
+	height: 4px;
+	background: #991b1b;
+	border-radius: 5px;
+	outline: none;
+	flex-grow: 1;
+}
+
+.custom-slider::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 18px;
+	height: 18px;
+	background: #f87171;
+	cursor: pointer;
+	border-radius: 50%;
+	border: 2px solid #ffffff;
+	transition: 0.2s;
+}
+
+.step-btn {
+	background: rgba(255, 255, 255, 0.1);
+	color: white;
+	width: 32px;
+	height: 32px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 8px;
+	font-weight: bold;
+	transition: all 0.2s;
+	user-select: none;
+}
+
+.step-btn:hover {
+	background: rgba(255, 255, 255, 0.2);
+	scale: 1.1;
+}
+
+.step-btn:active {
+	scale: 0.9;
+}
+
+#canvas-container {
+	position: relative;
+	width: 100%;
+	max-width: 400px;
+	aspect-ratio: 1/1;
+	background: #000;
+	box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+	overflow: hidden;
+	border-radius: 20px;
+	margin: 0 auto;
+	cursor: move;
+	touch-action: none;
+}
+
+canvas {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.glass-panel {
+	background: rgba(255, 255, 255, 0.05);
+	backdrop-filter: blur(15px);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+main {
+	flex: 1;
+}
+
+.text-gradient {
+	background: linear-gradient(to bottom right, #fecaca, #ef4444);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.download-btn {
+	background: transparent;
+	border: 2px solid rgba(255, 255, 255, 0.2);
+	color: white;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.download-btn:not(:disabled):hover {
+	background: #ffffff;
+	color: #450a0a;
+	border-color: #ffffff;
+	transform: translateY(-2px);
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.value-badge {
+	background: rgba(248, 113, 113, 0.2);
+	color: #fca5a5;
+	padding: 2px 8px;
+	border-radius: 6px;
+	font-size: 0.7rem;
+	font-weight: bold;
+}
+
+.hidden-controls {
+	display: none;
+}
+
+/* alert box */
+#custom-alert {
+	display: none;
+	position: fixed;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.8);
+	z-index: 1000;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+}
