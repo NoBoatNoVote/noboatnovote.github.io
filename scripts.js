@@ -38,19 +38,19 @@ const toBengaliNumber = (num) => {
 };
 
 function copyHashtag() {
-    const hashtag = "#NoBoatNoVote";
-    navigator.clipboard.writeText(hashtag).then(() => {
-        const btn = event.target;
-        const originalText = btn.innerText;
-        
-        btn.innerText = "কপি হয়েছে!";
-        btn.style.color = "#4ADE80"; // সবুজ রঙ
-        
-        setTimeout(() => {
-            btn.innerText = originalText;
-            btn.style.color = ""; // আগের রঙে ফিরে যাবে
-        }, 2000);
-    });
+   navigator.clipboard.writeText('#NoBoatNoVote')
+      .then(() => {
+         const n = document.createElement('div');
+         n.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        কপি হয়েছে!
+                    `;
+         n.style.cssText = 'position:fixed;top:20px;right:20px;background:#10b981;color:white;padding:8px 12px;border-radius:8px;z-index:9999;display:flex;align-items:center;';
+         document.body.appendChild(n);
+         setTimeout(() => n.remove(), 1500);
+      });
 }
 
 
@@ -197,3 +197,4 @@ downloadBtn.addEventListener('click', () => {
    }
 
 });
+
