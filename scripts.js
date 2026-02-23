@@ -37,6 +37,23 @@ const toBengaliNumber = (num) => {
    return num.toString().replace(/\d/g, d => bengaliDigits[d]);
 };
 
+function copyHashtag() {
+    const hashtag = "#NoBoatNoVote";
+    navigator.clipboard.writeText(hashtag).then(() => {
+        const btn = event.target;
+        const originalText = btn.innerText;
+        
+        btn.innerText = "কপি হয়েছে!";
+        btn.style.color = "#4ADE80"; // সবুজ রঙ
+        
+        setTimeout(() => {
+            btn.innerText = originalText;
+            btn.style.color = ""; // আগের রঙে ফিরে যাবে
+        }, 2000);
+    });
+}
+
+
 window.adjust = (id, amount) => {
    const el = document.getElementById(id);
    const newVal = parseFloat(el.value) + amount;
@@ -178,4 +195,5 @@ downloadBtn.addEventListener('click', () => {
       // If download failed
       customAlert.style.display = 'flex';
    }
+
 });
