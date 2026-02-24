@@ -126,7 +126,7 @@ upload.addEventListener('change', (e) => {
             const scaleY = canvas.height / userImg.height;
             baseFitScale = Math.max(scaleX, scaleY);
 
-            zoomInput.value = 1;
+            zoomInput.value = 0.79;
             posXInput.value = 0;
             posYInput.value = 0;
 
@@ -197,4 +197,5 @@ downloadBtn.addEventListener('click', () => {
    }
 
 });
+
 
